@@ -2,6 +2,7 @@ const app = {
     data() {
         return {
             images: [{
+                    id: 1,
                     image: './images/fullmoon.jpg',
                     name: 'Lone Full moon in the night sky',
                     location: 'Shush, Khuzestan Province, Iran',
@@ -9,6 +10,7 @@ const app = {
                     show: true
                 },
                 {
+                    id: 2,
                     image: './images/galaxy.jpg',
                     name: 'Twinkle Twinkles, That many stars for you',
                     location: 'Zolotaya Dolina, Primorsky kray, Russia',
@@ -16,6 +18,7 @@ const app = {
                     show: true
                 },
                 {
+                    id: 3,
                     image: './images/hillhouse.jpg',
                     name: 'Lone house in the sea of fogs',
                     location: 'Ojstrica viewpoint, Slovenia',
@@ -62,6 +65,33 @@ const app = {
         },
         selectImg(index) {
             this.canvasImg = this.images[index]
+        },
+        closeCanvas(){
+            this.canvasImg = null
+        },
+        previous(id){
+            if(id == this.images[0].id){
+                this.canvasImg = this.images[this.images.length-1]
+            } else {
+                for(let i = 0 ; i < this.images.length ; i++){
+                    if(id == this.images[i].id){
+                        this.canvasImg = this.images[i-1]
+                        return
+                    }
+                }
+            }
+        },
+        next(id){
+            if(id == this.images[this.images.length-1].id){
+                this.canvasImg = this.images[0]
+            } else {
+                for(let i = 0 ; i < this.images.length ; i++){
+                    if(id == this.images[i].id){
+                        this.canvasImg = this.images[i+1]
+                        return
+                    }
+                }
+            }
         }
     },
     computed: {

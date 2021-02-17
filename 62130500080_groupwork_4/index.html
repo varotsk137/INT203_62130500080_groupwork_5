@@ -23,7 +23,7 @@
 </head>
 
 <body>
-  <div id="app" class="container flex justify-center items-center">
+  <div id="app" class="container grid justify-center items-center">
     <div class="card h-max">
       <div class="header text-center text-3xl font-semibold my-3 w-full">Photo Gallery ({{ totalPhoto }})</div>
       <!-- Search Function Here -->
@@ -42,8 +42,9 @@
       <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
 
       <!-- Canvas Start Here -->
-      <div class="canvas m-2 p-2 bg-gray-700 rounded h-max space-y-2 transition ease-in-out" v-if="canvasImg">
-        <img class=" w-full" :src="canvasImg.image">
+      <div class="canvas m-2 p-2 bg-gray-700 rounded h-max space-y-2  transition-transform ease-in-out"
+        v-if="canvasImg">
+        <img class="w-full  duration-500" :src="canvasImg.image">
         <div class="h-0.5 bg-gray-400"></div>
         <div>
           <p class="pl-5 text-xl text-white italic text-gray-200">
@@ -53,6 +54,19 @@
             @{{ canvasImg.location }}
           </p>
         </div>
+        <div class="flex justify-center text-white font-bold space-x-3">
+          <button @click="previous(canvasImg.id)"> <i class="material-icons">
+              keyboard_arrow_left
+            </i></button>
+          <button @click="closeCanvas"> <i class="material-icons">
+              highlight_off
+            </i></button>
+          <button @click="next(canvasImg.id)"><i class="material-icons">
+              keyboard_arrow_right
+            </i></button>
+        </div>
+        <div class="h-0.5 bg-gray-400"></div>
+
 
       </div>
       <!-- Canvas End Here -->
@@ -61,7 +75,7 @@
       <!-- Photo Gallery Start Here -->
       <div class="space-y-2.5 w-full pb-2">
         <div class="text-center mx-auto text-3xl py-5 font-bold" v-if="!hasPhoto()">No Photo.</div>
-        <div v-for="(image,index) in showGallery">
+        <div v-for="(image,index) in showGallery" :key="image.id">
           <div class="image-container mx-auto space-x-3 items-center flex" v-if="image.show">
             <img :src="image.image" width="150" height="75" class="px-4" @click="selectImg(index)">
             <div class="w-64 h-full space-y-1">
@@ -74,7 +88,7 @@
           </div>
         </div>
         <div class="sep-line h-0.5 bg-gray-700 mx-10"></div>
-        <div class="w-full text-base text-center font-bold"> Total Like: {{ totalLike }}</div>
+        <div class="w-full text-base text-center font-bold"> Total Favorite: {{ totalLike }}</div>
       </div>
       <!-- Photo Gallery End Here -->
     </div>
