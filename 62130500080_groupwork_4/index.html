@@ -26,19 +26,25 @@
   <div id="app" class="container flex justify-center items-center">
     <div class="card h-max">
       <div class="header text-center text-3xl font-semibold my-3 w-full">Photo Gallery ({{ totalPhoto }})</div>
-      <div class="text-right h-8 pr-10 w-full" v-if="!searchModeOn" >
-        <i class="material-icons" @click="toggleSearchMode">
-          search
-        </i>
+      <!-- Search Function Here -->
+      <div class="text-right h-8 pr-10 w-full" v-if="!searchModeOn">
+        <button><i class="material-icons border p-1 bg-gray-200 rounded-full" @click="toggleSearchMode">
+            search
+          </i></button>
       </div>
       <div class="flex search-bar w-full h-8 space-x-4  items-center" v-if="searchModeOn">
-        <input class="ml-10 h-full rounded w-80 border px-2" name="search-bar" type="text" placeholder="Input text here..." 
-          v-model="searchValue" @keyup.enter="searchPhoto">
+        <input class="ml-10 h-full rounded w-80 border px-2" name="search-bar" type="text"
+          placeholder="Input text here..." v-model="searchValue" @keyup.enter="searchPhoto">
         <button class="h-full rounded bg-red-500 px-2 text-white" @click="toggleSearchMode"> Cancel </button>
       </div>
+      <!-- Search Function End Here-->
+
       <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
+
+      <!-- Photo Gallery Start Here -->
       <div class="space-y-2.5 w-full pb-10">
-        <div class="flex image-container mx-auto space-x-3 items-center" v-for="(image,index) in images">
+        <div class="text-center mx-auto text-3xl py-5 font-bold" v-if="hasPhoto()">No Photo.</div>
+        <div class="flex image-container mx-auto space-x-3 items-center" v-for="(image,index) in showGallery">
           <img :src="image.image" width="150" height="75" class="px-4" @click="toggleHeart(index)">
           <div class="w-64 h-full space-y-1">
             <p class="italic text-base font-semibold">{{ image.name }}</p>
@@ -50,6 +56,7 @@
         </div>
         <div class="sep-line h-0.5 bg-gray-700 mx-10"></div>
       </div>
+      <!-- Photo Gallery End Here -->
     </div>
   </div>
 
