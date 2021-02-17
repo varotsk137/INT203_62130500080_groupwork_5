@@ -26,22 +26,24 @@
   <div id="app" class="container flex justify-center items-center">
     <div class="card h-max">
       <div class="header text-center text-3xl font-semibold my-3 w-full">Photo Gallery ({{ totalPhoto }})</div>
-      <i class="material-icons text-right pr-10 w-full">
-        search
-      </i>
-      <div class="flex search-bar w-full h-8 space-x-2  items-center">
-        <input class=" ml-10 h-full rounded w-64 border px-2" name="search-bar" type="text">
+      <div class="text-right h-8 pr-10 w-full" v-if="!searchModeOn" >
+        <i class="material-icons" @click="toggleSearchMode">
+          search
+        </i>
+      </div>
+      <div class="flex search-bar w-full h-8 space-x-2  items-center" v-if="searchModeOn">
+        <input class=" ml-10 h-full rounded w-64 border px-2" name="search-bar" type="text" placeholder="Input text here...">
         <button class="h-full rounded bg-blue-500 px-2 text-white"> Search</button>
-        <button class="h-full rounded bg-red-500 px-2 text-white"> Cancel </button>
+        <button class="h-full rounded bg-red-500 px-2 text-white" @click="toggleSearchMode"> Cancel </button>
       </div>
       <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
       <div class="space-y-2.5 w-full pb-10">
         <div class="flex image-container mx-auto space-x-3 items-center" v-for="(image,index) in images">
           <img :src="image.image" width="150" height="75" class="px-4" @click="toggleHeart(index)">
           <p class="w-64 italic text-base font-semibold">{{ image.name }}</p>
-            <i class="material-icons text-red-500" v-if="image.fav">
-              favorite
-            </i>
+          <i class="material-icons text-red-500" v-if="image.fav">
+            favorite
+          </i>
         </div>
         <div class="sep-line h-0.5 bg-gray-700 mx-10"></div>
       </div>

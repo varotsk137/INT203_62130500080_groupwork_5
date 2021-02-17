@@ -6,12 +6,15 @@ const app = {
                 {image: './images/galaxy.jpg', name: 'Twinkle Twinkles, That many stars for you',location:'Zolotaya Dolina, Primorsky kray, Russia', fav: false},
                 {image: './images/hillhouse.jpg', name: 'House in the sea of fogs',location:'Unknown', fav: false}
             ],
-            searchBarOn: false
+            searchModeOn: false
         }
     },
     methods: {
         toggleHeart(index){
             this.images[index].fav = !this.images[index].fav
+        },
+        toggleSearchMode(){
+            this.searchModeOn = !this.searchModeOn;
         }
     },
     computed: {
