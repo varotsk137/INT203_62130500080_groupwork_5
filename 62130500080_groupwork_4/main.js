@@ -24,6 +24,13 @@ const app = {
                     location: 'Ojstrica viewpoint, Slovenia',
                     fav: false,
                     show: true
+                },{
+                    id: 4,
+                    image: './images/twilightbeach.jpg',
+                    name: 'Twilight Beach',
+                    location: 'Twilight Beach Rd, West Beach WA 6450, Australia, West Beach',
+                    fav: false,
+                    show: true
                 }
             ],
             searchModeOn: false,
