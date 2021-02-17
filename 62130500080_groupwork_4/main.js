@@ -2,10 +2,11 @@ const app = {
     data() {
         return {
             images: [
-                {image: './images/fullmoon.jpg', name: 'Lone Full moon in the night sky', fav: false},
-                {image: './images/galaxy.jpg', name: 'Twinkles, That many star for you', fav: false},
-                {image: './images/hillhouse.jpg', name: 'House in the sea of fogs', fav: false}
-            ]
+                {image: './images/fullmoon.jpg', name: 'Lone Full moon in the night sky',location:'Shush, Khuzestan Province, Iran', fav: false},
+                {image: './images/galaxy.jpg', name: 'Twinkle Twinkles, That many stars for you',location:'Zolotaya Dolina, Primorsky kray, Russia', fav: false},
+                {image: './images/hillhouse.jpg', name: 'House in the sea of fogs',location:'Unknown', fav: false}
+            ],
+            searchBarOn: false
         }
     },
     methods: {
