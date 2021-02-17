@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <!-- CSS -->
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app" class="container flex justify-center items-center">
+    <div class="card h-max">
+      <div class="header text-center text-3xl font-semibold my-3 w-full">Photo Gallery ({{ totalPhoto }})</div>
+      <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
+      <div class="space-y-2.5 w-full pb-10">
+        <div class="flex image-container mx-auto space-x-3 items-center" v-for="(image,index) in images">
+          <img :src="image.image" width="150" height="75" class="px-4" @click="toggleHeart(index)">
+          <p class="w-64 italic text-base font-semibold">{{ image.name }}</p>
+            <i class="material-icons text-red-500" v-if="image.fav">
+              favorite
+            </i>
+        </div>
+        <div class="sep-line h-0.5 bg-gray-700 mx-10"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- my main.js -->
+  <script src="./main.js"></script>
+</body>
+
+</html>
