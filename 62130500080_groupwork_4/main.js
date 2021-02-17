@@ -6,7 +6,8 @@ const app = {
                 {image: './images/galaxy.jpg', name: 'Twinkle Twinkles, That many stars for you',location:'Zolotaya Dolina, Primorsky kray, Russia', fav: false},
                 {image: './images/hillhouse.jpg', name: 'House in the sea of fogs',location:'Unknown', fav: false}
             ],
-            searchModeOn: false
+            searchModeOn: false,
+            searchValue: ''
         }
     },
     methods: {
@@ -15,12 +16,18 @@ const app = {
         },
         toggleSearchMode(){
             this.searchModeOn = !this.searchModeOn;
+        },
+        searchPhoto(){
+
         }
     },
     computed: {
         totalPhoto() {
             return this.images.length
-        }
+        },
+        // searchPhoto(name) {
+        //
+        // }
     }
 }
 
