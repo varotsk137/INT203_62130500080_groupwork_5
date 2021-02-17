@@ -41,20 +41,40 @@
 
       <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
 
+      <!-- Canvas Start Here -->
+      <div class="canvas m-2 p-2 bg-gray-700 rounded h-max space-y-2 transition ease-in-out" v-if="canvasImg">
+        <img class=" w-full" :src="canvasImg.image">
+        <div class="h-0.5 bg-gray-400"></div>
+        <div>
+          <p class="pl-5 text-xl text-white italic text-gray-200">
+            {{ canvasImg.name }}
+          </p>
+          <p class="pl-5 text-base text-white italic text-gray-200">
+            @{{ canvasImg.location }}
+          </p>
+        </div>
+
+      </div>
+      <!-- Canvas End Here -->
+
+
       <!-- Photo Gallery Start Here -->
-      <div class="space-y-2.5 w-full pb-10">
-        <div class="text-center mx-auto text-3xl py-5 font-bold" v-if="hasPhoto()">No Photo.</div>
-        <div class="flex image-container mx-auto space-x-3 items-center" v-for="(image,index) in showGallery">
-          <img :src="image.image" width="150" height="75" class="px-4" @click="toggleHeart(index)">
-          <div class="w-64 h-full space-y-1">
-            <p class="italic text-base font-semibold">{{ image.name }}</p>
-            <p class="text-gray-400 text-xs underline"> {{ image.location }} </p>
+      <div class="space-y-2.5 w-full pb-2">
+        <div class="text-center mx-auto text-3xl py-5 font-bold" v-if="!hasPhoto()">No Photo.</div>
+        <div v-for="(image,index) in showGallery">
+          <div class="image-container mx-auto space-x-3 items-center flex" v-if="image.show">
+            <img :src="image.image" width="150" height="75" class="px-4" @click="selectImg(index)">
+            <div class="w-64 h-full space-y-1">
+              <p class="italic text-base font-semibold">{{ image.name }}</p>
+              <p class="text-gray-400 text-xs underline"> {{ image.location }} </p>
+            </div>
+            <button @click="toggleHeart(index)"><i class="material-icons" :class="{'text-red-500': image.fav}">
+                favorite
+              </i></button>
           </div>
-          <i class="material-icons text-red-500" v-if="image.fav">
-            favorite
-          </i>
         </div>
         <div class="sep-line h-0.5 bg-gray-700 mx-10"></div>
+        <div class="w-full text-base text-center font-bold"> Total Like: {{ totalLike }}</div>
       </div>
       <!-- Photo Gallery End Here -->
     </div>
