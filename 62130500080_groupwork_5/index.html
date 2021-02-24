@@ -26,8 +26,8 @@
   <div id="app" class="container grid justify-center items-center">
     <div class="card h-max">
       <div class="header text-center text-3xl font-semibold my-3 w-full">Photo Gallery ({{ totalPhoto }})</div>
-      <!-- Search Function Here -->
-      <div class="text-right h-8 pr-10 w-full" v-if="!searchModeOn">
+      <photo-search></photo-search>
+      <!-- <div class="text-right h-8 pr-10 w-full" v-if="!searchModeOn">
         <button><i class="material-icons border p-1 bg-gray-200 rounded-full" @click="toggleSearchMode">
             search
           </i></button>
@@ -36,66 +36,53 @@
         <input class="ml-10 h-full rounded w-80 border px-2" name="search-bar" type="text"
           placeholder="Input text here..." v-model="searchValue" @keyup.enter="searchPhoto">
         <button class="h-full rounded bg-red-500 px-2 text-white" @click="toggleSearchMode"> Cancel </button>
-      </div>
-      <!-- Search Function End Here-->
-
+      </div> -->
+      <!-- -->
       <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
-
-      <!-- Canvas Start Here -->
+      <!-- <photo-view></photo-view> -->
       <div class="canvas m-2 p-2 bg-gray-700 rounded h-max space-y-2  transition-transform ease-in-out"
-        v-if="canvasImg">
-        <img class="w-full  duration-500" :src="canvasImg.image">
-        <div class="h-0.5 bg-gray-400"></div>
-        <div>
-          <p class="pl-5 text-xl text-white italic text-gray-200">
-            {{ canvasImg.name }}
-          </p>
-          <p class="pl-5 text-base text-white italic text-gray-200">
-            @{{ canvasImg.location }}
-          </p>
-        </div>
-        <div class="flex justify-center text-white font-bold space-x-3">
-          <button @click="previous(canvasImg.id)"> <i class="material-icons">
-              keyboard_arrow_left
-            </i></button>
-          <button @click="closeCanvas"> <i class="material-icons">
-              highlight_off
-            </i></button>
-          <button @click="next(canvasImg.id)"><i class="material-icons">
-              keyboard_arrow_right
-            </i></button>
-        </div>
-        <div class="h-0.5 bg-gray-400"></div>
-
-
-      </div>
-      <!-- Canvas End Here -->
-
-
-      <!-- Photo Gallery Start Here -->
-      <div class="space-y-2.5 w-full pb-2">
-        <div class="text-center mx-auto text-3xl py-5 font-bold" v-if="!hasPhoto()">No Photo.</div>
-        <div v-for="(image,index) in showGallery" :key="image.id">
-          <div class="image-container mx-auto space-x-3 items-center flex" v-if="image.show">
-            <img :src="image.image" width="150" height="75" class="px-4" @click="selectImg(index)">
-            <div class="w-64 h-full space-y-1">
-              <p class="italic text-base font-semibold">{{ image.name }}</p>
-              <p class="text-gray-400 text-xs underline"> {{ image.location }} </p>
-            </div>
-            <button @click="toggleHeart(index)"><i class="material-icons" :class="{'text-red-500': image.fav}">
-                favorite
+          v-if="canvasImg">
+          <img class="w-full  duration-500" :src="canvasImg.image">
+          <div class="h-0.5 bg-gray-400"></div>
+          <div>
+            <p class="pl-5 text-xl text-white italic text-gray-200">
+              {{ canvasImg.name }}
+            </p>
+            <p class="pl-5 text-base text-white italic text-gray-200">
+              @{{ canvasImg.location }}
+            </p>
+          </div>
+          <div class="flex justify-center text-white font-bold space-x-3">
+            <button @click="previous(canvasImg.id)"> <i class="material-icons">
+                keyboard_arrow_left
+              </i></button>
+            <button @click="closeCanvas"> <i class="material-icons">
+                highlight_off
+              </i></button>
+            <button @click="next(canvasImg.id)"><i class="material-icons">
+                keyboard_arrow_right
               </i></button>
           </div>
+          <div class="h-0.5 bg-gray-400"></div>
         </div>
-        <div class="sep-line h-0.5 bg-gray-700 mx-10"></div>
-        <div class="w-full text-base text-center font-bold"> Total Favorite: {{ totalLike }}</div>
-      </div>
-      <!-- Photo Gallery End Here -->
+
+
+        <!-- -->
+      <photo-list :images="images" @toggle-heart="toggleHeart" @select-img="selectImg"></photo-list>
     </div>
   </div>
+ <!-- my main.js -->
+ <script src="./main.js"></script>
 
-  <!-- my main.js -->
-  <script src="./main.js"></script>
+  <!-- Components -->
+  <script src="./components/PhotoList.js"></script>
+  <script src="./components/PhotoSearch.js"></script>
+  <!-- <script src="./components/PhotoView.js"></script> -->
+
+  <!-- Mount App -->
+  <script>
+    const mountedApp = app.mount('#app');
+  </script>
 </body>
 
 </html>
