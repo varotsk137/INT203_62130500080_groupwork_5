@@ -1,6 +1,7 @@
 app.component('photo-list', {
     props: {
-        images: Array
+        images: Array,
+        searchValue: String
     },
     template:
         /*html*/`

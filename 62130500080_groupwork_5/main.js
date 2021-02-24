@@ -33,9 +33,8 @@ const app = Vue.createApp({
                 show: true
             }
         ],
+        searchValue: '',
         canvasImg: null,
-            searchModeOn: false,
-            searchValue: '',
         }
     },
     methods: {
@@ -45,35 +44,11 @@ const app = Vue.createApp({
         selectImg(index) {
             this.canvasImg = this.images[index]
         },
-        
-        toggleSearchMode() {
-            if (this.searchModeOn) {
-                this.images.forEach(image => {
-                    image.show = true
-                });
-            }
-            this.searchModeOn = !this.searchModeOn;
-        },
-        searchPhoto() {
-            // Check condition if input is null then just return //
-            if (this.searchValue == '') {
-                return
-            }
-            this.images.forEach(image => {
-                if (image.name.toLowerCase().includes(this.searchValue.toLowerCase()) ||
-                    image.location.toLowerCase().includes(this.searchValue.toLowerCase())) {
-                    image.show = true
-                } else {
-                    image.show = false
-                }
-            })
-            this.searchValue = ''
+        searchPhoto(searchValue){
+            this.searchValue = searchValue
         },
         selectImg(index) {
             this.canvasImg = this.images[index]
-        },
-        closeCanvas(){
-            this.canvasImg = null
         },
         previous(id){
             if(id == this.images[0].id){
@@ -101,10 +76,21 @@ const app = Vue.createApp({
         }
     },
     computed: {
-
-        totalPhoto() {
-            return this.images.filter(i => i.show).length
+        showGallery() {
+            if(this.searchValue){
+                return this.images.filter(image => image.name.toLowerCase().includes(this.searchValue.toLowerCase()) || 
+                image.location.toLowerCase().includes(this.searchValue.toLowerCase()))
+            } else {
+                return this.images
+            }
         },
+        totalPhoto() {
+            if(this.searchValue){
+                return this.images.filter(image => image.name.toLowerCase().includes(this.searchValue.toLowerCase()) || 
+                image.location.toLowerCase().includes(this.searchValue.toLowerCase())).length
+            } else {
+            return this.images.length
+        }},
         
     }
 }

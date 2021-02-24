@@ -1,4 +1,7 @@
 app.component('photo-search', {
+    props: {
+        images: Array
+    },  
     template:
     /*html*/`
     <div class="text-right h-8 pr-10 w-full" v-if="!searchModeOn">
@@ -14,11 +17,29 @@ app.component('photo-search', {
   `,
     data() {
       return {
-         
+         searchModeOn: false,
+         searchValue: ''
       }
     },
     methods: {
-        
+        toggleSearchMode() {
+            if (this.searchModeOn) {
+                this.searchPhoto()
+                this.images.forEach(image => {
+                    image.show = true
+                });
+            }
+            this.searchModeOn = !this.searchModeOn;
+        },
+        searchPhoto() {
+            // Check condition if input is null then just return //
+            if (this.searchValue == '') {
+                this.$emit('search-photo','')
+                return
+            }
+            this.$emit('search-photo',this.searchValue)
+            this.searchValue = ''
+        },
     },
     computed: {
         

@@ -26,49 +26,11 @@
   <div id="app" class="container grid justify-center items-center">
     <div class="card h-max">
       <div class="header text-center text-3xl font-semibold my-3 w-full">Photo Gallery ({{ totalPhoto }})</div>
-      <photo-search></photo-search>
-      <!-- <div class="text-right h-8 pr-10 w-full" v-if="!searchModeOn">
-        <button><i class="material-icons border p-1 bg-gray-200 rounded-full" @click="toggleSearchMode">
-            search
-          </i></button>
-      </div>
-      <div class="flex search-bar w-full h-8 space-x-4  items-center" v-if="searchModeOn">
-        <input class="ml-10 h-full rounded w-80 border px-2" name="search-bar" type="text"
-          placeholder="Input text here..." v-model="searchValue" @keyup.enter="searchPhoto">
-        <button class="h-full rounded bg-red-500 px-2 text-white" @click="toggleSearchMode"> Cancel </button>
-      </div> -->
-      <!-- -->
+      
+      <photo-search :images="images" @search-photo="searchPhoto"></photo-search>
       <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
-      <!-- <photo-view></photo-view> -->
-      <div class="canvas m-2 p-2 bg-gray-700 rounded h-max space-y-2  transition-transform ease-in-out"
-          v-if="canvasImg">
-          <img class="w-full  duration-500" :src="canvasImg.image">
-          <div class="h-0.5 bg-gray-400"></div>
-          <div>
-            <p class="pl-5 text-xl text-white italic text-gray-200">
-              {{ canvasImg.name }}
-            </p>
-            <p class="pl-5 text-base text-white italic text-gray-200">
-              @{{ canvasImg.location }}
-            </p>
-          </div>
-          <div class="flex justify-center text-white font-bold space-x-3">
-            <button @click="previous(canvasImg.id)"> <i class="material-icons">
-                keyboard_arrow_left
-              </i></button>
-            <button @click="closeCanvas"> <i class="material-icons">
-                highlight_off
-              </i></button>
-            <button @click="next(canvasImg.id)"><i class="material-icons">
-                keyboard_arrow_right
-              </i></button>
-          </div>
-          <div class="h-0.5 bg-gray-400"></div>
-        </div>
-
-
-        <!-- -->
-      <photo-list :images="images" @toggle-heart="toggleHeart" @select-img="selectImg"></photo-list>
+      <photo-view :canvasImg="canvasImg"></photo-view>
+      <photo-list :searchValue="searchValue" :images="showGallery" @toggle-heart="toggleHeart" @select-img="selectImg"></photo-list>
     </div>
   </div>
  <!-- my main.js -->
@@ -77,7 +39,7 @@
   <!-- Components -->
   <script src="./components/PhotoList.js"></script>
   <script src="./components/PhotoSearch.js"></script>
-  <!-- <script src="./components/PhotoView.js"></script> -->
+  <script src="./components/PhotoView.js"></script>
 
   <!-- Mount App -->
   <script>
