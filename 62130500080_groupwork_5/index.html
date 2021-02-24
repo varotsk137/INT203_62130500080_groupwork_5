@@ -29,8 +29,8 @@
       
       <photo-search :images="images" @search-photo="searchPhoto"></photo-search>
       <div class="sep-line h-0.5 bg-gray-700 my-2 mx-10"> </div>
-      <photo-view :canvasImg="canvasImg"></photo-view>
-      <photo-list :searchValue="searchValue" :images="showGallery" @toggle-heart="toggleHeart" @select-img="selectImg"></photo-list>
+      <photo-view :canvas-img="canvasImg" @next="next" @previous="previous" @close-canvas="closeCanvas"></photo-view>
+      <photo-list :search-value="searchValue" :images="showGallery" @toggle-heart="toggleHeart" @select-img="selectImg"></photo-list>
     </div>
   </div>
  <!-- my main.js -->

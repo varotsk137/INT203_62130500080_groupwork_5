@@ -38,6 +38,9 @@ const app = Vue.createApp({
         }
     },
     methods: {
+        closeCanvas(){
+            this.canvasImg = null
+        },
         toggleHeart(index) {
             this.images[index].fav = !this.images[index].fav
         },

@@ -20,7 +20,7 @@ app.component('photo-view', {
             <button @click="$emit('previous',canvasImg.id)"> <i class="material-icons">
                 keyboard_arrow_left
               </i></button>
-            <button @click="closeCanvas"> <i class="material-icons">
+            <button @click="$emit('close-canvas')"> <i class="material-icons">
                 highlight_off
               </i></button>
             <button @click="$emit('next',canvasImg.id)"><i class="material-icons">
@@ -30,9 +30,4 @@ app.component('photo-view', {
           <div class="h-0.5 bg-gray-400"></div>
         </div>
     `,
-    methods: {
-        closeCanvas(){
-            this.canvasImg = null
-        },
-    }
 })

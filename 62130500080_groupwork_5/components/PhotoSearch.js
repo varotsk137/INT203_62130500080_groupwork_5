@@ -24,10 +24,8 @@ app.component('photo-search', {
     methods: {
         toggleSearchMode() {
             if (this.searchModeOn) {
+                this.searchValue = ''
                 this.searchPhoto()
-                this.images.forEach(image => {
-                    image.show = true
-                });
             }
             this.searchModeOn = !this.searchModeOn;
         },
